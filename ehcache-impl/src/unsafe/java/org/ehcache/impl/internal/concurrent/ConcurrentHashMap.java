@@ -262,7 +262,6 @@ import java.util.stream.Stream;
  * <ul>
  *   <li>jdk.internal.misc.Unsafe is replaced by VarHandles</li>
  *   <li>ThreadLocalRandom.getProbe is replaced by {@link ThreadLocalRandomUtil#getProbe}, which keeps its own per-thread probe</li>
- *   <li>getReferenceAcquire is replaced by a plain get</li>
  *   <li>putReferenceRelease is replaced by a volatile set</li>
  *   <li>CounterCell is not annotated with jdk.internal.vm.annotation.Contended</li>
  * </ul>
@@ -781,7 +780,7 @@ public class ConcurrentHashMap<K,V> extends AbstractMap<K,V>
 
     @SuppressWarnings("unchecked")
     static final <K,V> Node<K,V> tabAt(Node<K,V>[] tab, int i) {
-        return (Node<K,V>)AA.get(tab, i);
+        return (Node<K,V>)AA.getAcquire(tab, i);
     }
 
     static final <K,V> boolean casTabAt(Node<K,V>[] tab, int i,
