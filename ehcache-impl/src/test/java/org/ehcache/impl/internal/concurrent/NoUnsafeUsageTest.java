@@ -44,6 +44,11 @@ public class NoUnsafeUsageTest {
     }
   }
 
+  @Test
+  public void threadLocalRandomUtilDoesNotReferenceUnsafe() throws IOException {
+    assertDoesNotReferenceUnsafe(ThreadLocalRandomUtil.class);
+  }
+
   private static void assertDoesNotReferenceUnsafe(Class<?> type) throws IOException {
     assertThat(type.getName(), referencedTypes(type), not(hasItem("sun/misc/Unsafe")));
   }

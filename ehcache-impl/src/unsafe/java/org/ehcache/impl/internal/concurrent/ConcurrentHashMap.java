@@ -261,7 +261,7 @@ import java.util.stream.Stream;
  * Main modifications are tagged with "EHCACHE SPECIFIC" in the code. Global changes are:
  * <ul>
  *   <li>jdk.internal.misc.Unsafe is replaced by VarHandles</li>
- *   <li>ThreadLocalRandom.getProbe is retrieved using {@link ThreadLocalRandomUtil#getProbe}</li>
+ *   <li>ThreadLocalRandom.getProbe is replaced by {@link ThreadLocalRandomUtil#getProbe}, which keeps its own per-thread probe</li>
  *   <li>getReferenceAcquire is replaced by a plain get</li>
  *   <li>putReferenceRelease is replaced by a volatile set</li>
  *   <li>CounterCell is not annotated with jdk.internal.vm.annotation.Contended</li>
